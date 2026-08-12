@@ -1,0 +1,71 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "Fintheon",
+  "favicon": "https://media.brand.dev/913e0bb7-dc4e-47c3-b04f-1387c352757c.svg",
+  "colors": {
+    "primary": "#747474",
+    "light": "#d6d6d6",
+    "dark": "#050505"
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/solvys-technologies/fintheon"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "installation",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Workspace",
+            "pages": [
+              "workspace/consilium",
+              "workspace/sanctum",
+              "workspace/strategium",
+              "workspace/apparatus"
+            ]
+          },
+          {
+            "group": "AI Features",
+            "pages": [
+              "ai/harper",
+              "ai/arbitrum",
+              "ai/riskflow",
+              "ai/briefs"
+            ]
+          },
+          {
+            "group": "Trading Tools",
+            "pages": [
+              "trading/journal",
+              "trading/psych-assist",
+              "trading/voice"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/cli",
+              "configuration/troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+---
+title: "Strategium: Mission Control & Live RiskFlow Feed"
+description: "Fintheon's right panel — account summary, trading toggles, live RiskFlow feed, composite IV score widget, drift indicator, and economic calendar."
+sidebarTitle: "Strategium"
+---
+
+Strategium is the right-side panel of the Fintheon desktop. While Consilium holds your analytical workspace, Strategium is where you keep your finger on the pulse: your account summary and open positions, a live IV scoring widget, a real-time RiskFlow news feed, and an economic calendar showing upcoming macro events with impact estimates. Everything in Strategium stays visible regardless of which Consilium tab is active.
+
+## Mission Control
+
+At the top of Strategium sits the **Mission Control** section — a compact command panel for your trading account.
+
+### Account summary
+
+The account summary block shows your current balance, margin utilization, and overall P&L. It updates in real time as positions move.
+
+### Trading status toggles
+
+Below the account summary are three toggles that control your live trading state:
+
+| Toggle | What it controls |
+|---|---|
+| **Trading Enabled** | Master switch — turns live order routing on or off |
+| **Auto Trade** | Allows the platform to route agent-proposed trades automatically when enabled |
+| **Risk Management** | Activates the platform's position-sizing and drawdown guardrails |
+
+<Note>
+  Auto Trade is off by default. When enabled, agent trade proposals that pass Harper's gatekeeper review can route to your execution account without a manual confirmation step. Review your risk settings before enabling.
+</Note>
+
+### Open positions
+
+Below the toggles, the **Positions** panel lists your current open futures positions with entry price, current price, unrealized P&L, and the originating agent or session. Positions are sorted by absolute unrealized P&L — your biggest mover is always at the top.
+
+---
+
+## IV score widget
+
+The **IV score widget** in Strategium shows Fintheon's composite implied-volatility score — a blended reading that factors in near-term options pricing, the VIX, and historical realized volatility across the futures instruments you trade.
+
+### Reading the widget
+
+- **Composite IV score** — a normalized 0–10 figure. A score above 7 indicates elevated volatility; below 3 indicates a compressed vol regime.
+- **VIX correlation** — the current relationship between the composite score and the CBOE VIX. A divergence (score rising while VIX is flat) can signal localized vol pressure in futures before it shows up in equity options.
+- **Regime label** — a plain-language tag: Low Vol, Neutral, Elevated, or High Vol.
+
+### Hover peek
+
+Hovering over the IV score widget surfaces a peek card showing the latest Fintheon Arbitrum chamber read — the consensus probability, confidence level, and one-line dissent summary from the most recent deliberation. This lets you quickly cross-reference the volatility signal against agent consensus without switching to Sanctum's Aquarium.
+
+---
+
+## Drift indicator
+
+The **drift indicator** sits below the IV widget. It tracks the current directional drift of the instruments in your watchlist against their rolling 5-day average range. A positive drift value means price action is trending above the mean; negative means it is compressing toward the lower bound of the range.
+
+Use the drift indicator alongside the IV score to calibrate position sizing: high drift combined with elevated IV typically warrants smaller size and wider stops.
+
+---
+
+## RiskFlow feed
+
+The RiskFlow mini-feed in Strategium surfaces the most recent scored news items from the RiskFlow engine. Each item shows:
+
+- The **headline** and its source
+- An **IV-weighted urgency score** (1–10) — how much this event is expected to move implied volatility
+- A **sentiment tag** (bullish, bearish, or neutral)
+- A **severity level** (low, medium, high, critical)
+
+### Strategium feed vs. the full Sanctum feed
+
+The Strategium feed shows the top five to eight highest-scoring items in a compact format. It is designed for a quick scan — you can see what is moving the market without leaving your current Consilium view.
+
+The full RiskFlow feed available inside Sanctum (Page 2, Risk Signals) shows the complete item list with expanded detail, category tags, and the option to promote items to NarrativeFlow narratives.
+
+<Tip>
+  When a RiskFlow item in Strategium catches your eye, switch to Sanctum's Risk Scan preset for the full picture — it shows the same items with agent commentary and the associated narrative context.
+</Tip>
+
+---
+
+## Economic calendar
+
+The **economic calendar** section of Strategium shows upcoming macro events with estimated market impact. Events are organized chronologically and tagged by category (inflation, employment, Fed, earnings, geopolitical).
+
+### Impact estimates
+
+Each calendar event carries an impact estimate sourced from Sanctum's **Econ Watch** page — where Oracle, Feucht, Consul, and Herald each contribute a domain-specific forecast for the event's likely effect on futures. The impact estimate in Strategium is the agent-consensus summary:
+
+| Impact label | What it means |
+|---|---|
+| **High** | Agents expect a material vol expansion; Feucht and Oracle have conflicting stances |
+| **Medium** | Consensus directional view but magnitude is uncertain |
+| **Low** | Event is on the calendar but agents see limited price-action impact |
+| **Watch** | No firm consensus — Herald has flagged significant social sentiment divergence |
+
+### Expanding an event
+
+Click any calendar event to expand it and see the full agent commentary from the most recent Econ Watch run. The expanded view shows each agent's probability-weighted forecast for the print and the expected market reaction.
+
+<Tip>
+  The Econ Watch preset in Sanctum gives you the full Economic Intelligence page — the same data as the Strategium calendar but with category-level scores, cross-agent disagreements highlighted, and the macro context snapshot from the last Arbitrum deliberation.
+</Tip>

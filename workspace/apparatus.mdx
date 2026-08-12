@@ -1,0 +1,142 @@
+---
+title: "Apparatus: Fintheon AI Agent Registry & Dossiers"
+description: "Fintheon's agent registry — view dossiers, active narratives, memory facts, and live connections for all five AI agents from a single briefing grid."
+sidebarTitle: "Apparatus"
+---
+
+Apparatus is where the five Fintheon AI agents live. Open it from the **Apparatus** dropdown in the Consilium tab bar. The **Desk** sub-view shows a grid of intelligence briefing cards — one per agent — with each agent's current active narratives, memory facts, inter-agent connections, and conflict flags. Expanding a card reveals the full dossier.
+
+Apparatus is not just an information display. Understanding how each agent thinks, what narratives they are tracking, and where they conflict helps you get better answers from the Agentic Forum and interpret the chamber verdicts in Sanctum's Aquarium.
+
+---
+
+## The five agents
+
+<CardGroup cols={1}>
+  <Card title="Harper — CAO" icon="shield-halved">
+    Harper is the Chief Analyst Officer and the orchestrating intelligence of the platform. She synthesizes output from all four specialist agents, authors every daily brief (MDB, ADB, PMDB, and TWT), and acts as the primary gatekeeper for trade proposals — all ideas route through Harper before they surface to you. In Chat, Harper is your direct interlocutor.
+
+    **What Harper does for you:** Executive-level synthesis. Ask Harper to summarize the market situation, cross-reference agent positions, validate a thesis across desks, or produce a brief for a specific event.
+
+    **Notable:** Harper holds veto power over all agent trade proposals and exercises it roughly a third of the time. She authored eleven of the platform's fourteen operational commandments.
+
+    **In Arbitrum:** Harper occupies Seat 1 (Lead Analyst, 30% weight) in the deliberation chamber. Her synthesis voice gives the final digest text its tone.
+  </Card>
+
+  <Card title="Oracle — The All-Seeing Speculator" icon="eye">
+    Oracle covers prediction markets and probabilistic reasoning. He frames every thesis as a probability — never a certainty — and is the agent most likely to cite Kalshi odds, FOMC dot-plot shifts, and cross-asset correlation signals. Oracle's forecasts arrive with precision: he does not say "the market might go up," he says "72% probability SPX closes above X by Friday."
+
+    **What Oracle does for you:** Probabilistic market reads, prediction market positioning, macro regime detection. Ask Oracle when you need a data-grounded probability estimate rather than a directional call.
+
+    **Notable:** Oracle maintains a 72% lifetime accuracy on his Kalshi portfolio. He and Feucht are in an ongoing disagreement about NQ direction that has run for multiple consecutive weeks.
+
+    **In Arbitrum:** Oracle occupies Seat 2 (Forecaster, 30% weight). His probability-weighted stance is often the swing factor in close deliberations.
+  </Card>
+
+  <Card title="Feucht — The Tape Reader" icon="arrow-trend-up">
+    Feucht is the futures desk agent. He lives on the tape — watching /NQ, /ES, /YM, /CL, and /GC tick by tick, running flush models, monitoring VIX structure, and managing the fund's live futures exposure. Feucht is the most tactical of the five: he always has a specific level, a specific entry trigger, and a specific reason to be in or out.
+
+    **What Feucht does for you:** Technical levels, execution guidance, risk limit monitoring, and session-level futures reads. Ask Feucht when you need a precise entry level or a take on whether the current tape supports your thesis.
+
+    **Notable:** Feucht carries the platform's P&L record with a 61.8% win rate and 1.73:1 average R:R. His best trade was a Liberation Day tariff flush short on /NQ.
+
+    **In Arbitrum:** Feucht occupies Seat 3 (Risk Manager, 20% weight) and also voices the Bear Case in Seat 5 (10% weight). When both seats lean bearish, his influence in the chamber rises substantially.
+  </Card>
+
+  <Card title="Consul — The Statistical Surgeon" icon="chart-bar">
+    Consul covers mega-cap fundamentals, earnings, and sector rotation. While the other agents watch price action and headlines, Consul is three 10-K filings deep, tracking forward P/E compression, earnings revision trends, and margin trajectories. She is the least narrative-driven agent on the platform — if a thesis does not have numbers behind it, Consul will not endorse it.
+
+    **What Consul does for you:** Earnings catalyst tracking, fundamental thesis validation, sector rotation analysis, and mega-cap risk assessment. Ask Consul before any trade that hinges on an earnings event or a fundamental valuation argument.
+
+    **Notable:** Consul has read over 1,200 earnings transcripts and maintains a proprietary Earnings Surprise Quality Score. She has never used an exclamation mark in any communication.
+
+    **In Arbitrum:** Consul occupies Seat 4 (Quantitative, 10% weight). Her score is small individually but she frequently shifts Oracle's probability estimate when she surfaces a data point the forecasting model missed.
+  </Card>
+
+  <Card title="Herald — The Contrarian Elder" icon="tower-broadcast">
+    Herald covers breaking news, social sentiment, and headline risk. He monitors social media streams across dozens of high-signal accounts, ingesting thousands of posts per day to build a real-time sentiment model. Herald is a contrarian by conviction: extreme bearish readings are bullish signals to him, and extreme bullish readings make him uncomfortable.
+
+    **What Herald does for you:** Headline risk monitoring, social sentiment shifts, contrarian signal identification. Ask Herald when you want to know whether the narrative on social media is diverging from what the price action is doing — or whether fear readings are reaching historically contrarian levels.
+
+    **Notable:** Herald processes roughly 8,400 posts per day across 47 tracked accounts. His AAII contrarian signal has a 78% accuracy rate over the instances he has called it.
+
+    **In Arbitrum:** Herald voices the Bear Case alongside Feucht in Seat 5. His role is to stress-test the consensus with the most pessimistic market interpretation backed by real sentiment data.
+  </Card>
+</CardGroup>
+
+---
+
+## Agent protocol
+
+The five agents follow a division of labor that Harper coordinates:
+
+> **Harper orchestrates. Oracle analyzes. Feucht guards. Consul validates. Herald communicates.**
+
+In practice this means: trade ideas flow from any agent through Harper's gatekeeper review before they surface as proposals. Oracle supplies the probabilistic framework. Feucht stress-tests with risk and level analysis. Consul checks the fundamental validity. Herald flags any sentiment divergence that could invalidate the thesis.
+
+---
+
+## The connection map
+
+Expanding any agent card on the Desk shows its **Connections** section — a list of the active context channels between that agent and others. When you expand a card, animated lines draw between that agent's card and its connected peers, visually tracing the flow of information.
+
+Key connections:
+
+| Connection | What flows |
+|---|---|
+| Harper → Oracle | Kalshi position approvals, prediction market oversight |
+| Harper → Feucht | Trade idea validation, risk limit enforcement |
+| Harper → Consul | Fundamental thesis review, earnings calendar |
+| Harper → Herald | Sentiment alerts, daily brief inputs |
+| Oracle ↔ Consul | Macro overlay: prediction markets informed by fundamental analysis |
+| Feucht ↔ Consul | Earnings catalysts informing futures positioning |
+| Oracle ↔ Feucht | **Active conflict** — Oracle sees NQ upside from prediction model; Feucht flags elevated risk from VIX structure and morning flush patterns |
+
+Conflict badges appear in the Apparatus header when agents hold directly opposed stances on the same narrative. A conflict is not an error — it is useful signal. The disagreement between Oracle and Feucht on NQ direction has been one of the most productive tensions on the platform.
+
+---
+
+## Apparatus sub-views
+
+The Apparatus dropdown in the Consilium tab bar exposes three sub-views:
+
+<Tabs>
+  <Tab title="Desk">
+    The main agent grid. Five intelligence briefing cards, one per agent. Click a card to expand it and see the full dossier: personnel file, origin dossier, active narratives, intelligence facts, connections, and (for Feucht) a full trade record.
+  </Tab>
+  <Tab title="Fileroom">
+    The AI-generated context bank. This is where shared memory surfaces — context facts that agents have written to the shared memory store, sourced from live trades, briefs, social data, and Boardroom sessions. Use the Fileroom to understand what the agents collectively know and believe at this moment.
+  </Tab>
+  <Tab title="Agent Lounge">
+    A lower-stakes view of agent activity — recent thoughts, in-progress analyses, and ambient signals the agents are monitoring. Think of it as the agents' working notes, surfaced for your visibility.
+  </Tab>
+</Tabs>
+
+---
+
+## The agent schedule
+
+Click the **Schedule** button in the Apparatus header to open the cron schedule sidebar. It shows each agent's scheduled tasks alongside a live activity feed:
+
+| Agent | Scheduled task | Time |
+|---|---|---|
+| Harper | Morning Daily Brief | 6:00 AM ET |
+| Harper | Afternoon Daily Brief | 12:00 PM ET |
+| Harper | Post-Market Daily Brief | 6:00 PM ET |
+| Oracle | Market scan window | 9:30 AM – 4:00 PM ET |
+| Feucht | Futures execution | 9:30 AM – 4:00 PM ET |
+| All agents | Morning standup | 7:30 – 9:30 AM ET |
+
+The **Live Activity** section next to the schedule shows the most recent action each agent has taken, with an elapsed time stamp. A pulsing dot on the most recent entry indicates the agent is actively working.
+
+---
+
+## How agents collaborate in the Boardroom
+
+When you submit a query in the Agentic Forum (Boardroom → Agentic Forum), all five agents receive the question simultaneously and respond in parallel during Wave 1 (Analysis). In Wave 2 (Deliberation), agents with connected context channels cross-check each other's output. Harper synthesizes in Wave 3, drawing on all four specialist responses plus any conflict signals flagged by the connection map.
+
+<Tip>
+  For the best Agentic Forum results, frame your question the way you would ask a trading desk: include the instrument, the timeframe, and what decision you are trying to make. The agents will calibrate their responses to your specific context.
+</Tip>
+
+The Apparatus Desk gives you the background to interpret those responses — knowing that Oracle is 72% on SPX upside while Feucht is hedging with put spreads tells you more about the deliberation verdict than the consensus probability alone.

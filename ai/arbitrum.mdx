@@ -1,0 +1,169 @@
+---
+title: "Fintheon Arbitrum — 5-Seat AI Deliberation Chamber"
+description: "Fintheon Arbitrum is a 5-seat AI chamber that debates a market question and returns a structured verdict: consensus probability, confidence score, dissent summary, and digest text."
+sidebarTitle: "Arbitrum (Chamber)"
+---
+
+Fintheon Arbitrum is a deliberation engine — five AI analysts seated at a virtual round table, each arguing from a distinct role, then converging on a weighted verdict. When a high-impact RiskFlow item crosses the IV threshold, or when the 5 PM ET session cron fires, the chamber convenes automatically. You can also trigger it manually at any time. The output is a structured read you can act on: a consensus probability, a chamber confidence score, a plain-language digest, and a dissent summary if the seats disagreed. Arbitrum never places trades and never takes actions — the call is always yours.
+
+<Note>
+Fintheon Arbitrum is unrelated to the Arbitrum Ethereum L2 blockchain network. When disambiguation is needed, this feature is referred to as "Fintheon Arbitrum."
+</Note>
+
+## The five seats
+
+Each seat runs from a distinct persona and analytical role. The weighted average of all five seat outputs produces the final consensus probability.
+
+| Seat | Persona | Role | Weight |
+|---|---|---|---|
+| 1 | **Harper** | Lead Analyst / CAO | 30% |
+| 2 | **Oracle** | Forecaster | 30% |
+| 3 | **Feucht** | Risk Manager | 20% |
+| 4 | **Consul** | Quantitative | 10% |
+| 5 | **Herald** | Bear Case | 10% |
+
+Harper and Oracle carry the most weight because synthesis and probabilistic forecasting are the highest-leverage inputs for a verdict. Feucht's risk management perspective acts as a floor check. Consul and Herald provide quantitative grounding and the contrarian bear case respectively.
+
+## When the chamber fires automatically
+
+The chamber fires without your intervention in two situations:
+
+**IV threshold trigger** — When a RiskFlow item's IV score reaches **8.5 or above** and the source is a top-tier commentator or a tracked party of interest, the chamber opens immediately. This is the event-driven path: a single high-conviction headline from a credible speaker can bring all five seats to the table.
+
+**Session cron** — Every weekday at **5:00 PM ET**, the chamber runs a session-end deliberation. This verdict feeds directly into the Post-Market Daily Brief (PMDB) as the "Chamber Read" section, which publishes at 5:15 PM ET.
+
+<Tip>
+If you see a Chamber Read in the PMDB but didn't trigger Arbitrum yourself, it came from the 5:00 PM session cron. You can fetch the underlying verdict from the Aquarium panel or via the API.
+</Tip>
+
+## Triggering the chamber manually
+
+You have two paths to trigger a manual deliberation:
+
+**From the UI** — Navigate to **Sanctum** in Consilium and open the **Aquarium** panel. The deliberate button runs a chamber session on the current market context.
+
+**Via API** — Send a POST request with your question, an optional category, and optional context text. The chamber returns a verdict synchronously.
+
+<CodeGroup>
+```http Manual deliberation request
+POST /api/arbitrum/deliberate
+Content-Type: application/json
+
+{
+  "question": "Is the current /ES IV environment driven by macro risk or a sentiment overreaction?",
+  "category": "volatility",
+  "context": "VIX spiked 14% this session following FOMC minutes. /ES is at session lows."
+}
+```
+
+```json Deliberation response
+{
+  "verdict_id": "arb_20260508_174312_a3f",
+  "persisted": true,
+  "consensus_probability": 0.73,
+  "confidence": 0.81,
+  "dissent": {
+    "seat": "Herald",
+    "magnitude_pp": 18,
+    "rationale": "Headline risk from after-hours commentary not yet priced in — sentiment tail remains open."
+  },
+  "digest_text": "The chamber reads the IV spike as predominantly macro-driven. Harper and Oracle converge on 73% probability that this is a genuine risk repricing, not sentiment noise. Feucht confirms the technical level at 5,420 as a key invalidation. Consul notes that earnings-season positioning exacerbates the move. Herald dissents: after-hours commentary risk remains open and the tail is not fully closed."
+}
+```
+</CodeGroup>
+
+**Request fields**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `question` | string | Yes | The market question for the chamber to deliberate |
+| `category` | string | No | Topic category, e.g. `volatility`, `macro`, `custom` (defaults to `custom`) |
+| `context` | string | No | Additional context injected into each seat's prompt |
+| `rounds` | number | No | Override the number of deliberation rounds (uses chamber default if omitted) |
+
+## Understanding the verdict output
+
+Every verdict returns the same set of fields whether it came from an automatic trigger or a manual call.
+
+**`consensus_probability`** — A value between 0 and 1 representing the weighted average probability across all five seats. The Aquarium displays this as a percentage (e.g., 73%). A reading above 0.7 indicates strong chamber agreement on the directional thesis.
+
+**`confidence`** — The chamber's confidence in its own consensus, also 0–1 (displayed as x/10 in the UI). Low confidence alongside a high consensus probability suggests the seats agreed directionally but with soft conviction — worth noting before acting.
+
+**`dissent`** — Present when one or more seats diverged meaningfully from the consensus. Shows which seat dissented, by how many percentage points (`magnitude_pp`), and the seat's stated rationale. A large dissent magnitude is a signal to investigate the contrarian case, not ignore it.
+
+**`digest_text`** — The plain-language synthesis of the chamber's deliberation. This is the text that appears in the Aquarium panel, in the IV widget hover peek, and in the PMDB Chamber Read section.
+
+**`trigger`** — How the chamber was invoked: `scheduled` (session cron), `iv_threshold` (RiskFlow event trigger), or `manual`.
+
+## Where to read verdicts
+
+**Sanctum → Aquarium panel** — The primary surface for Arbitrum output. Shows the live verdict card with consensus percentage, confidence bar, digest text, and dissent badge. Individual seat cards display each analyst's probability, confidence, and rationale.
+
+**IV score widget hover** — Hover over the IV score widget in Strategium to see a peek of the latest verdict's digest text alongside the IV aggregate reading.
+
+**PMDB Chamber Read** — The Post-Market Daily Brief includes a dedicated "Chamber Read" section when a session verdict exists for the day. This section leads with the consensus and flags any dissent before the brief's bullet points.
+
+<Warning>
+Fintheon Arbitrum produces analysis only. It does not submit orders, set stops, or take any position in the market. All trading decisions remain with you.
+</Warning>
+
+## API reference
+
+<CodeGroup>
+```http Trigger a deliberation
+POST /api/arbitrum/deliberate
+Content-Type: application/json
+
+{
+  "question": "Your market question here",
+  "category": "macro",
+  "context": "Optional context string"
+}
+```
+
+```http Fetch the latest verdict
+GET /api/arbitrum/latest
+```
+
+```http Fetch the latest verdict by trigger type
+GET /api/arbitrum/latest?trigger=session
+```
+
+```http Fetch a specific verdict by ID
+GET /api/arbitrum/:id
+```
+</CodeGroup>
+
+**`GET /api/arbitrum/latest` response**
+
+```json
+{
+  "verdict": {
+    "id": "arb_20260508_170012_c9e",
+    "created_at": "2026-05-08T21:00:12.000Z",
+    "consensus_probability": 0.68,
+    "confidence": 0.76,
+    "digest_text": "Session read: moderate bearish tilt on /NQ into overnight. Oracle and Harper align on 68% probability of continuation lower. Feucht flags 18,900 as the line — close below confirms. Herald notes social sentiment is crowded short, adding contrarian risk to the thesis.",
+    "dissent": null,
+    "trigger": "scheduled",
+    "rounds_total": 3,
+    "rounds_complete": 3,
+    "phase": "complete",
+    "seats": [
+      { "role": "Lead", "probability": 0.71, "confidence": 0.82, "rationale": "..." },
+      { "role": "Forecaster", "probability": 0.69, "confidence": 0.79, "rationale": "..." },
+      { "role": "Future PM", "probability": 0.65, "confidence": 0.74, "rationale": "..." },
+      { "role": "Quant", "probability": 0.63, "confidence": 0.68, "rationale": "..." },
+      { "role": "Skeptic", "probability": 0.55, "confidence": 0.61, "rationale": "..." }
+    ]
+  }
+}
+```
+
+**Trigger type values for `?trigger=` query parameter**
+
+| Value | Description |
+|---|---|
+| `event` | IV threshold trigger (RiskFlow item ≥ 8.5) |
+| `session` | Weekday 5:00 PM ET session cron |
+| `manual` | Manually triggered via the UI or API |

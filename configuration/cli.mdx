@@ -1,0 +1,193 @@
+---
+title: "Fintheon CLI Command Reference"
+description: "Use the fintheon CLI to install, start, stop, update, and monitor your Fintheon desktop app from the terminal. Full command reference with examples."
+sidebarTitle: "CLI"
+---
+
+The `fintheon` CLI is the single entry point for managing your Fintheon installation. After the first-time setup, you use it to start and stop the application, pull updates, tail logs, and connect your AI subscription — all without touching the app itself.
+
+## Command reference
+
+| Command | What it does |
+| ------- | ------------ |
+| `fintheon install` | First-time setup — installs all dependencies and launches the app |
+| `fintheon update` | Pulls the latest code, rebuilds, and restarts |
+| `fintheon start` | Starts the backend and opens the Fintheon app |
+| `fintheon stop` | Stops the backend and closes the app |
+| `fintheon restart` | Stops everything, then starts again |
+| `fintheon logs` | Tails the live backend log |
+| `fintheon status` | Shows whether the backend and app are running |
+| `fintheon oauth` | Connects your Anthropic subscription via VProxy |
+| `fintheon peers` | Runs the Twitter round-robin onboarding flow for team members |
+| `fintheon version` | Prints the current installed version |
+
+---
+
+## Detailed usage
+
+### `fintheon install`
+
+Run `fintheon install` once, on a fresh machine. It handles everything required to get Fintheon running:
+
+- Installs Homebrew, Node 22, Bun, Python 3, and uv if they are missing
+- Installs the Claude CLI and Hermes agent
+- Configures VProxy for Anthropic OAuth (opens a browser window — click Allow)
+- Installs all JavaScript dependencies
+- Builds the backend and frontend
+- Installs the `fintheon` command globally at `/usr/local/bin/fintheon`
+- Starts the backend and opens the app
+
+<CodeGroup>
+
+```bash One-liner (no git clone needed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/solvys-technologies/fintheon/main/scripts/fintheon-setup.sh)"
+```
+
+```bash Clone first, then install
+git clone https://github.com/solvys-technologies/fintheon.git ~/Documents/Codebases/fintheon
+cd ~/Documents/Codebases/fintheon
+./fintheon install
+```
+
+</CodeGroup>
+
+After install completes, open the app and sign in with Google. No API keys are needed — credentials are loaded from the cloud on first sign-in.
+
+<Note>
+The installer writes the `fintheon` symlink to `/usr/local/bin`. After install, you can run `fintheon` from any directory without `./`.
+</Note>
+
+---
+
+### `fintheon update`
+
+`fintheon update` pulls the latest code from the repository, rebuilds both the backend and frontend, and restarts all services. No manual steps are required.
+
+```bash
+fintheon update
+```
+
+<Tip>
+If the update fails mid-way, run `fintheon stop` first to clear any stale processes, then retry `fintheon update`.
+</Tip>
+
+---
+
+### `fintheon start` and `fintheon stop`
+
+`fintheon start` starts the Fintheon backend service and, if `/Applications/Fintheon.app` is present, launches the desktop app. The backend log is written to `/tmp/fintheon-backend.log`.
+
+`fintheon stop` stops the backend process and quits the Electron app.
+
+```bash
+fintheon start
+fintheon stop
+```
+
+`fintheon restart` is equivalent to running `stop` followed by `start` with a short pause between them.
+
+```bash
+fintheon restart
+```
+
+---
+
+### `fintheon logs`
+
+`fintheon logs` tails the backend log file in real time. Use it to watch startup output, monitor incoming events, or diagnose errors.
+
+```bash
+fintheon logs
+```
+
+The log file location is `/tmp/fintheon-backend.log`. You can also open it directly:
+
+```bash
+tail -f /tmp/fintheon-backend.log
+```
+
+Press `Ctrl C` to stop tailing.
+
+---
+
+### `fintheon status`
+
+`fintheon status` checks whether the backend is listening on port 8080 and whether the Fintheon app process is running. It also prints the current version.
+
+```bash
+fintheon status
+```
+
+Example output:
+
+```
+  Fintheon Status
+  ────────────────────────────────
+  ✓ Backend running on :8080
+  ✓ App running
+  · Version: v1.4.2
+```
+
+If the backend is running, `status` also prints the raw JSON health response from `/health` so you can see which services are up.
+
+---
+
+### `fintheon oauth`
+
+`fintheon oauth` opens the VProxy Anthropic OAuth flow. This connects your Anthropic subscription to the local VProxy gateway, which Harper uses for AI inference in the chat panel.
+
+```bash
+fintheon oauth
+```
+
+**When to run it:**
+
+- During first-time setup if the installer's automatic VProxy step failed (you will see a warning at the end of `fintheon install`)
+- When Harper stops responding and the logs show authentication errors against the VProxy endpoint
+- When you switch to a different Anthropic account
+
+The command opens a browser window. Click **Allow** to authorize the connection. You do not need to manage any API keys manually — VProxy handles token refresh automatically after the initial authorization.
+
+<Note>
+`fintheon oauth` only affects Harper's AI inference. If you switch to Nous or ORouter as your AI provider from the chat dropdown, you do not need to rerun this command.
+</Note>
+
+---
+
+### `fintheon peers`
+
+`fintheon peers` runs the team onboarding script, which walks through the Twitter round-robin setup for adding new members to your shared Fintheon instance. It configures X authentication keys for additional team members so that polling load is distributed across the pool.
+
+```bash
+fintheon peers
+```
+
+Follow the prompts to add each team member's Rettiwt key to the pool. Once added, their key appears in Settings › API › Feed Pool alongside yours.
+
+---
+
+### `fintheon version`
+
+Prints the current version string, derived from the latest git tag.
+
+```bash
+fintheon version
+```
+
+```
+  Fintheon v1.4.2
+```
+
+---
+
+## Log file
+
+The backend writes all output to `/tmp/fintheon-backend.log`. This file is replaced each time the backend starts. Use it as your first stop when diagnosing startup failures, API errors, or missing data in the feed.
+
+```bash
+# Watch in real time
+fintheon logs
+
+# Search for errors
+grep -i error /tmp/fintheon-backend.log
+```

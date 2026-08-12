@@ -1,0 +1,162 @@
+---
+title: "Daily Briefs — MDB, ADB, PMDB, and Tribune Weekly"
+description: "Fintheon generates four scheduled AI briefs: Morning (6:30 AM ET), Afternoon (10:45 AM ET), Post-Market (5:15 PM ET), and Tribune Weekly (4:30 PM Sundays). Each covers a distinct session window."
+sidebarTitle: "Daily Briefs"
+---
+
+Fintheon generates four scheduled AI briefs throughout the trading week, each written specifically for the window it covers. The briefs are produced automatically on their schedules, delivered as push notifications when ready, and accessible from the Sanctum briefing panel. Every brief is grounded in the live RiskFlow feed and the economic calendar — Harper never fabricates price levels, actual/forecast numbers, or data not present in the source inputs.
+
+## The four brief types
+
+<Tabs>
+  <Tab title="MDB — Morning Daily Brief">
+    **Schedule:** 6:30 AM ET, weekdays
+
+    The MDB is the most comprehensive brief of the day. It sets your analytical frame for the session before the open.
+
+    **What it covers:**
+
+    - **Day Type** — Classified as Macro, Catalyst, Drift, or Compounding, with a one-line reason for the classification
+    - **Scheduled Events** — Today's economic calendar events with times (ET), sourced directly from the live calendar; no fabricated data
+    - **Macro / Political Take** — 2–3 sentences on the dominant macro theme: labor, inflation, geopolitical risk, Fed posture
+    - **Market Risks & VIX** — Event risk from the overnight RiskFlow headlines and VIX directional read based on catalyst severity
+    - **Overall Sentiment** — One punchy sentence synthesizing the headline tone
+    - **Market Regime** — A classification (BULL_TREND, BEAR_TREND, CONSOLIDATION, GEO_TENSIONS, MACRO_ECON, RISK_OFF, EARNINGS_SEASON, or ILLIQUID_STUPIDITY) with a one-line justification
+    - **Best Intraday Approach** — A specific strategy recommendation (Ripper, AWV, Snipe, etc.) anchored to the day's catalyst profile
+
+    The MDB also proposes a regime update to the platform's market regime engine. The proposal is reviewed before it takes effect — the MDB does not silently override a manually set regime.
+
+    **Length:** 300–500 words
+  </Tab>
+  <Tab title="ADB — Afternoon Daily Brief">
+    **Schedule:** 10:45 AM ET, weekdays
+
+    The ADB is a lean mid-session update. It covers only developments that emerged after the MDB was written — new data prints, intraday moves, and fresh headlines that change the picture. It explicitly skips anything already covered in the morning brief.
+
+    **What it covers:**
+
+    - 3–5 bullet points covering new headlines and data points since the MDB
+    - Actionable framing: each bullet identifies whether the development is relevant to open positions or changes the intraday thesis
+
+    **Length:** Under 200 words
+  </Tab>
+  <Tab title="PMDB — Post-Market Daily Brief">
+    **Schedule:** 5:15 PM ET, weekdays
+
+    The PMDB synthesizes the full session and adds the **Chamber Read** — a one-sentence restatement of Fintheon Arbitrum's 5:00 PM session verdict, including any dissent, before the post-market bullets. The Chamber Read is only present when the Arbitrum session cron fired successfully at 5:00 PM ET.
+
+    **What it covers:**
+
+    - **Chamber Read** (when available) — Arbitrum's session consensus and dissent summary, leading the brief
+    - 4–6 bullet points covering post-market moves, after-hours earnings, and overnight catalysts that developed since the ADB
+    - Direct and actionable framing for the next session's context
+
+    **Length:** Under 250 words
+  </Tab>
+  <Tab title="TWT — Tribune Weekly">
+    **Schedule:** 4:30 PM ET, Sundays
+
+    The Tribune Weekly is the most expansive brief, structured as a two-part report covering the past week and the week ahead.
+
+    **Part 1 — Past Week Recap:**
+    - **Market Overview** — Dominant themes from the week's RiskFlow headlines: geopolitical tensions, macro shifts, risk-on/risk-off tone
+    - **Macro Data Highlights** — Key economic releases from the week; actual/forecast numbers cited only when present in the source data
+    - **Political Commentary** — Coverage of tracked persons of interest (administration officials, Fed members, etc.) with specific policy actions and market implications
+    - **VolScore for Past Events** — A 1–10 volatility impact rating for each major event of the week
+    - **Sentiment Summary** — Characterization of the week's overall tone: cautious, bearish, bullish
+
+    **Part 2 — Week Ahead:**
+    - **Scheduled Events** — Upcoming economic calendar entries with day, time, and VolScore
+    - **Sentiment Outlook** — What will drive the coming week based on the confirmed catalyst calendar
+
+    **Length:** 600–900 words
+  </Tab>
+</Tabs>
+
+## Where to read briefs
+
+**Sanctum briefing panel** — The primary surface for reading briefs. Inside Sanctum, the briefing panel shows the latest brief for the current time window. A briefing button in the Consilium header provides quick access.
+
+The panel renders the brief with structured sections — Key Findings, Risk Alerts, and Harper's analysis narrative — when the brief includes that structure. Plain-text briefs render in full without truncation.
+
+**Push notifications** — When a brief is generated, Fintheon sends a push notification to all subscribed devices. The notification title indicates the brief type (e.g., "MDB brief ready") and the body shows the first line of the brief. Tapping the notification opens the brief directly.
+
+## Desk Theme context
+
+Each brief — MDB, ADB, PMDB, and TWT — includes your **Desk Theme** block if you have a day plan set for the current date. The Desk Theme block is a pre-formatted monospace table showing:
+
+- Event name and desk theme label
+- Trading windows with start/end times (ET)
+- Prices of interest, invalidation levels, profit targets, and expected move percentages
+
+This context is injected into the brief prompt so Harper's analysis is anchored to your specific plan for the day, not a generic market view.
+
+## Accessing past briefs
+
+Past briefs are stored and retrievable by type. Use the `GET /api/data/brief/latest?type=MDB` endpoint to fetch the most recent brief of a given type, or navigate to the brief history in the Sanctum briefing panel.
+
+<Steps>
+  <Step title="Open Sanctum">
+    Navigate to the Sanctum surface in the Consilium workspace.
+  </Step>
+  <Step title="Open the briefing panel">
+    Click the briefing button in the Consilium header, or scroll to the briefing panel within Sanctum.
+  </Step>
+  <Step title="Browse history">
+    The panel defaults to the latest brief for the current time window. Use the brief type selector to switch between MDB, ADB, PMDB, and TWT. Past briefs within the same type are accessible from the history list.
+  </Step>
+</Steps>
+
+## API reference
+
+<CodeGroup>
+```http Generate a brief
+POST /api/data/brief/generate
+Content-Type: application/json
+
+{ "type": "MDB" }
+```
+
+```http Fetch the latest brief by type
+GET /api/data/brief/latest?type=MDB
+```
+
+```http Fetch the latest brief (auto-detected from time of day)
+GET /api/data/brief/latest
+```
+</CodeGroup>
+
+**Supported `type` values**
+
+| Type | Brief name | Schedule |
+|---|---|---|
+| `MDB` | Morning Daily Brief | 6:30 AM ET, weekdays |
+| `ADB` | Afternoon Daily Brief | 10:45 AM ET, weekdays |
+| `PMDB` | Post-Market Daily Brief | 5:15 PM ET, weekdays |
+| `TWT` | Tribune Weekly | 4:30 PM ET, Sundays |
+
+**`GET /api/data/brief/latest?type=MDB` response**
+
+```json
+{
+  "id": "brief_20260508_063012",
+  "brief_type": "MDB",
+  "content": "**Day Type:** Catalyst — FOMC minutes release at 14:00 ET...",
+  "generated_by": "harper",
+  "category": "MDB",
+  "created_at": "2026-05-08T10:30:12.000Z"
+}
+```
+
+<Note>
+The `POST /api/data/brief/generate` endpoint triggers an immediate generation regardless of the current time. The brief type in the request body overrides the time-of-day auto-detection. Omit the body to let the system pick the appropriate type based on the current ET time.
+</Note>
+
+## Brief schedule reference
+
+| Brief | Fires at | Covers | Notes |
+|---|---|---|---|
+| MDB | 6:30 AM ET, Mon–Fri | Overnight developments, catalyst setup, pre-market regime | Proposes market regime update |
+| ADB | 10:45 AM ET, Mon–Fri | Mid-session developments since the MDB | Skips anything in the MDB |
+| PMDB | 5:15 PM ET, Mon–Fri | Post-market, after-hours, overnight catalysts | Includes Arbitrum Chamber Read when available |
+| TWT | 4:30 PM ET, Sundays | Past week recap + week ahead outlook | Longest brief; VolScore framework throughout |

@@ -1,0 +1,100 @@
+---
+title: "Your First Session in the Fintheon Workspace"
+description: "Walk through opening Fintheon for the first time: sign in with Google, read your morning brief, navigate the workspace, and ask Harper your first question."
+sidebarTitle: "Quick start"
+---
+
+This guide walks you through your first session in Fintheon — from opening the app to asking Harper a question about the market. The whole walkthrough takes about five minutes and covers the areas of the workspace you will use every day.
+
+<Steps>
+  <Step title="Open the app and sign in">
+    Launch Fintheon from your Applications folder or from the command line:
+
+    ```bash
+    fintheon start
+    ```
+
+    The sign-in screen appears. Click **Sign in with Google** and authorize with your Google account. Fintheon uses Google OAuth — you will not be asked for any API keys or passwords beyond your normal Google login.
+
+    After signing in, the workspace opens and an 11-step guided tour starts automatically. You can click through it for an overview of each section, or click **Skip tour** to continue on your own.
+  </Step>
+
+  <Step title="Read your first brief in Sanctum">
+    The first place to go each morning is **Sanctum**, accessible from the left navigation bar. Sanctum is your narrative workspace: it holds your daily briefs, catalyst cards promoted from the RiskFlow feed, and the Aquarium panel showing the latest Arbitrum deliberation output.
+
+    Four briefs publish automatically each trading day:
+
+    | Brief | Name | Time (ET) |
+    |---|---|---|
+    | MDB | Morning Daily Brief | 6:30 AM weekdays |
+    | ADB | Afternoon Daily Brief | 10:45 AM weekdays |
+    | PMDB | Post-Market Daily Brief | 5:15 PM weekdays |
+    | TWT | Tribune Weekly | 4:30 PM Sundays |
+
+    Open the most recent brief to see overnight developments, key catalysts, and the Arbitrum chamber's read on the session ahead. Each brief is a structured AI synthesis — not a raw news dump — written in the context of your active instruments.
+
+    <Tip>
+      If it is early in the day and the MDB has not published yet, check the previous session's PMDB. It covers post-market action and sets up the overnight picture.
+    </Tip>
+  </Step>
+
+  <Step title="Navigate the main workspace areas">
+    The workspace is organized into three primary sections, each serving a different purpose:
+
+    **Consilium** — the main workspace panel on the left. This is where you interact with Harper (CAO chat), monitor the Boardroom deliberations, and access Apparatus (the agent registry). Most of your active analysis happens here.
+
+    **Sanctum** — the narrative workspace. Catalyst cards from RiskFlow promote into Sanctum when they reach a significance threshold. The Aquarium panel inside Sanctum shows the output of the most recent Arbitrum deliberation. Your daily briefs live here.
+
+    **Strategium** — the right-side mission control panel. It shows your economic calendar, live RiskFlow feed highlights, IV scoring, and platform health status. Strategium stays visible while you work in Consilium or Sanctum so you never miss a breaking signal.
+
+    Use the navigation bar on the left side of the screen to switch between these areas.
+  </Step>
+
+  <Step title="Ask Harper a question">
+    Navigate to **Consilium** and open the **Chat** tab. This is Harper — your Chief Analyst Officer.
+
+    Harper has full access to your RiskFlow feed, your daily briefs, and the Arbitrum deliberation history. Ask it anything relevant to your session. Some examples to get started:
+
+    - *"What is the key macro risk for ES today?"*
+    - *"Summarize the overnight RiskFlow for crude oil."*
+    - *"What did Arbitrum say about the Fed speakers this week?"*
+    - *"Walk me through the MDB thesis for this morning."*
+
+    Harper responds with synthesized analysis, not raw data. It will cite the sources it drew from — briefs, RiskFlow items, or Arbitrum verdicts — so you can trace its reasoning.
+
+    <Tip>
+      For the sharpest answers, be specific about the instrument and timeframe. "What is the risk for /NQ today given this morning's MDB?" will get you a more actionable response than a broad market question.
+    </Tip>
+  </Step>
+
+  <Step title="Monitor the RiskFlow feed">
+    Open the **RiskFlow** section from the navigation bar, or watch the live feed highlights in the **Strategium** right panel.
+
+    Every item in RiskFlow has been scored by an implied-volatility-weighted algorithm before it appears. Higher-scored items represent events more likely to move your instruments. The score reflects both the news content and the current IV environment — a Fed speaker in a high-volatility regime scores higher than the same speaker in a calm tape.
+
+    Items that reach a high enough significance threshold are promoted into Sanctum as catalyst cards, where you can annotate them and connect them to the broader narrative you are tracking.
+
+    <Note>
+      When an item reaches an IV score of 8.5 or higher and comes from a top-tier market commentator, Arbitrum fires a chamber deliberation automatically. You will see the result appear in Sanctum's Aquarium panel within a few minutes.
+    </Note>
+  </Step>
+</Steps>
+
+## What to explore next
+
+Once you are comfortable with the basics, these sections of the docs go deeper into each feature:
+
+<CardGroup cols={2}>
+  <Card title="Harper — CAO chat" icon="comments" href="/ai/harper">
+    Learn how Harper uses your briefs and feed to give context-aware answers.
+  </Card>
+  <Card title="RiskFlow feed" icon="newspaper" href="/ai/riskflow">
+    Understand the IV-weighted scoring model and how to read signals effectively.
+  </Card>
+  <Card title="Arbitrum deliberation" icon="scale-balanced" href="/ai/arbitrum">
+    Fire a five-seat AI chamber debate on any market question before you act.
+  </Card>
+  <Card title="Daily briefs" icon="file-lines" href="/ai/briefs">
+    See how the MDB, ADB, PMDB, and TWT are generated and what each covers.
+  </Card>
+</CardGroup>

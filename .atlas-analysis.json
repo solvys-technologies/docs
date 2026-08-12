@@ -1,0 +1,96 @@
+{
+  "projectType": "saas",
+  "projectName": "Fintheon",
+  "projectDescription": "Fintheon is an integrated desktop trading environment for futures that combines real-time AI-scored news, multi-agent deliberation, CAO chat, and execution tooling into a single workspace.",
+  "theme": "luma",
+  "primaryColor": "#747474",
+  "lightColor": "#050505",
+  "darkColor": "#d6d6d6",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "installation",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Workspace",
+            "pages": [
+              "workspace/consilium",
+              "workspace/sanctum",
+              "workspace/strategium",
+              "workspace/apparatus"
+            ]
+          },
+          {
+            "group": "AI Features",
+            "pages": [
+              "ai/harper",
+              "ai/arbitrum",
+              "ai/riskflow",
+              "ai/briefs"
+            ]
+          },
+          {
+            "group": "Trading Tools",
+            "pages": [
+              "trading/journal",
+              "trading/psych-assist",
+              "trading/voice"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/cli",
+              "configuration/troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "CAO Chat (Harper) — AI chief analyst with streaming multi-turn conversation and multi-agent boardroom dispatch",
+    "Arbitrum — 5-seat AI deliberation engine producing consensus probability, confidence, and dissent digest",
+    "RiskFlow — real-time scored news feed with IV-weighted urgency and watchlist filtering",
+    "Sanctum — composite timeline + Aquarium + NarrativeFlow workspace for narrative-driven analysis",
+    "Daily Briefs (MDB / ADB / PMDB / TWT) — scheduled AI-generated market briefings",
+    "PsychAssist — trader tilt and emotional-risk detection via ER scoring",
+    "Consilium — multi-agent team boardroom with DAG orchestration and live agent presence",
+    "Trading Journal — session PnL tracking, performance charting, and catalyst review",
+    "Voice Mode — voice-to-text and AI voice responses via VoiceRimFrame",
+    "CLI — install, update, start, stop, and manage the platform from the terminal"
+  ],
+  "publicApiSurface": [
+    "POST /api/harper/chat",
+    "GET /api/harper/status",
+    "POST /api/arbitrum/deliberate",
+    "GET /api/arbitrum/latest",
+    "GET /api/arbitrum/:id",
+    "GET /api/riskflow/feed",
+    "GET /api/riskflow/iv-aggregate",
+    "GET /api/riskflow/breaking",
+    "GET /api/riskflow/stream",
+    "POST /api/data/brief/generate",
+    "GET /api/data/brief/latest",
+    "GET /api/diagnostics",
+    "GET /api/mcp",
+    "fintheon install",
+    "fintheon update",
+    "fintheon start",
+    "fintheon stop",
+    "fintheon restart",
+    "fintheon logs",
+    "fintheon status",
+    "fintheon oauth",
+    "fintheon version"
+  ]
+}

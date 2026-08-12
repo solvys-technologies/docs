@@ -1,0 +1,257 @@
+---
+title: "Fintheon Settings: Profile, Theme, Trading & API"
+description: "Personalize Fintheon — set your trader profile, customize themes and colors, configure notifications, tune RiskFlow scoring, and connect external data sources."
+sidebarTitle: "Settings"
+---
+
+Settings let you shape how Fintheon looks, sounds, and behaves during your trading session. Changes you make in most tabs take effect immediately and sync to your account so they carry over between sessions and machines.
+
+## Opening Settings
+
+Click the gear icon in the bottom-left toolbar, or press `Cmd ,` (macOS) to open the Settings panel. Settings are organized across six tabs. Click any tab name to jump to that section.
+
+---
+
+## General
+
+The General tab controls your trader identity, your primary instrument, and your billing.
+
+### Trader Identity
+
+Your **Trader Name** appears in the toolbar next to your tier badge. Enter up to 24 characters. This name is visible to you across the Consilium workspace and in session logs.
+
+Your linked Google account is shown below the name field. To switch to a different Google account, click **Switch Account** — Fintheon will sign you out and prompt you to sign back in.
+
+### Trading Symbol
+
+Choose the futures instrument you primarily trade. The selected symbol focuses RiskFlow scoring, brief generation, and IV calculations on that contract. Click the symbol picker to see all available instruments and select a new one.
+
+<Note>
+You can change your trading symbol at any time. The new selection takes effect immediately for RiskFlow feeds and Harper's context — no restart needed.
+</Note>
+
+### Billing
+
+The Billing section shows your current plan tier, next billing date, and payment method. To change your plan, click **Change Plan**. To update your payment card, click **Update** next to your card on file. Past invoices are listed chronologically and can be downloaded individually.
+
+<Warning>
+Cancelling your subscription removes access at the end of the current billing period. You will not be charged again, but your data and settings are preserved if you resubscribe.
+</Warning>
+
+---
+
+## Theme
+
+The Theme tab controls the visual appearance of the entire Fintheon application.
+
+### Font Style
+
+Choose from several font themes, each with a distinct character suited to different reading preferences. A live preview at the top of the section shows how prices and narrative text will appear in the active font. Special themes (see below) override the font selection while active.
+
+### Pompa
+
+Pompa is a ceremonial mode that adds Roman-themed effects, sounds, and animations to the interface. Toggle it on or off from the switch in this section. It has no effect on trading functionality.
+
+### Special Themes
+
+Special themes apply the Nothing Design visual language — flat surfaces, industrial typography, and sharp geometry — on top of your current color palette. Select one to activate it. Click the same theme again to return to the default Solvys Gold palette.
+
+### Theme Presets
+
+Presets give you one-click color palettes. Each preset card shows a color swatch strip (accent, background, bullish, bearish, text) so you can preview the palette before applying it.
+
+### Custom Colors
+
+Use the color picker to define your own values for five core color tokens: **Accent**, **Background**, **Text**, **Bullish**, and **Bearish**. Changes apply immediately across the interface.
+
+### Severity Colors
+
+Severity colors control RiskFlow badges, alert banners, and status indicators throughout the app. You can customize five levels: Severe, Neutral Severe, Neutral, Low Neutral, and Low.
+
+### Narrative Category Colors
+
+NarrativeFlow uses category colors to distinguish narrative threads on the Narrative Flow map and Active Narratives tags. You can override the default color for each category: Geopolitical, Monetary, Macro, Market Structure, Earnings, Supply Chain, and Black Swan.
+
+<Tip>
+Narrative category color overrides are saved inside custom themes, so they travel with your palette when you export or switch between saved themes.
+</Tip>
+
+### Saving Custom Themes
+
+After adjusting any combination of colors and narrative overrides, click **Save as Custom Theme** to name and store the configuration. Saved themes appear in the **Your Saved Themes** section and can be activated or removed at any time.
+
+To restore all theme and font settings to the factory defaults, click **Reset to Default**.
+
+---
+
+## Notifications
+
+The Notifications tab lets you decide which events produce alerts and how those alerts sound.
+
+### Alert Configuration
+
+<Tabs>
+  <Tab title="Event toggles">
+    | Alert | What triggers it |
+    | ----- | ---------------- |
+    | **Price Alerts** | Significant price moves on your selected symbol |
+    | **Psychological Alerts** | PsychAssist tilt detection events |
+    | **News Alerts** | High-scoring RiskFlow items breaking in the feed |
+    | **Sound Enabled** | Master switch — turns audio on or off for all alerts |
+    | **Nametag Emotional Indicator** | Shows your current emotional state alongside your trader name in the toolbar |
+  </Tab>
+  <Tab title="VIX Spike Threshold">
+    The **VIX Spike Threshold** slider controls when Fintheon fires a toast notification for a VIX cross. Drag the slider between 15 and 40 to set your trigger level. The default is 22. Any time VIX closes above this value, you receive a visible and (if sound is on) audible alert.
+  </Tab>
+</Tabs>
+
+### Blocked Notifications
+
+If you have previously dismissed a notification type using "Don't Show Again," it appears in the **Blocked Notifications** section. Click **Reset All — Show Everything** to restore all suppressed notification types.
+
+### Healing Bowl Sound
+
+When PsychAssist detects emotional tilt, Fintheon can play a sound to prompt you to pause and reset. Choose from the available sounds in this section — each entry shows whether it is a calm or shock sound and includes a preview button. Calm sounds are relaxing; shock sounds are designed to interrupt autopilot behavior.
+
+### Microphone Device
+
+Select which microphone Fintheon uses for voice commands. The dropdown lists all detected microphones on your system. Choose **System Default** to follow your OS audio settings, or pick a specific device. Changes apply on your next voice session.
+
+<Note>
+If no microphones appear, grant microphone permission in System Settings › Privacy & Security › Microphone.
+</Note>
+
+---
+
+## RiskFlow
+
+The RiskFlow tab gives you control over how the scored news feed weights incoming events, which market regime it currently reflects, and which commentators influence scoring.
+
+### Event Weight Calibration
+
+RiskFlow scores news items by matching them to known event types and multiplying a base weight by the current regime and commentator tier. You can adjust the base weight for each event type using the sliders grouped by category:
+
+| Category | Event types |
+| -------- | ----------- |
+| **Black Swan** | Geopolitical escalation, flash crash, liquidity crisis |
+| **Fed / Policy** | FOMC decisions, fed speakers, tariff actions, fiscal policy |
+| **Data Prints** | CPI, NFP, PPI, jobless claims, GDP, PCE, retail sales, ISM, consumer confidence |
+| **Earnings** | Mag 7 earnings, sector earnings, guidance revisions |
+
+Slide any event type between 0 and 10. A small reset icon appears next to each slider once you move it off the saved value — click it to undo that change. When you are done, click **Save All** to persist your calibration. Click **Reset All to Defaults** to restore the factory weights.
+
+### Current Market Regime
+
+The active market regime controls sentiment multipliers applied to every scoring calculation. Fintheon detects regime automatically, but you can override it manually by clicking the regime selector and choosing a different regime from the dropdown. The current confidence level and the source that set the regime are shown alongside the selector.
+
+<Tip>
+Overriding the regime is useful when you believe the automated detection is lagging a recent macro shift. Your override is active until the system detects and updates the regime again.
+</Tip>
+
+### Persons of Interest Tiers
+
+Fintheon maintains a commentator registry and assigns each person a tier that acts as a scoring multiplier on their statements. Use the checkboxes to include or exclude each tier from your active feed:
+
+| Tier | Label | Multiplier |
+| ---- | ----- | ---------- |
+| Tier 1 | Market Movers | 1.5× |
+| Tier 2 | Notable Officials | 1.2× |
+| Tier 3 | Color Providers | 1.0× |
+| Untagged | Default | 0.8× |
+
+Uncheck a tier to stop that group's items from contributing to your RiskFlow feed.
+
+### Refinement Engine
+
+The **Refinement Engine** toggle makes a Refinement tab available in the Strategium sidebar, where you can add, edit, and tier-assign specific persons of interest. Disable it to hide the tab and keep the sidebar focused on mission control.
+
+---
+
+## Trading
+
+The Trading tab sets the guardrails and automation behavior for your trading session.
+
+### Risk Management
+
+<Steps>
+  <Step title="Daily Profit Target">
+    Set your target profit amount for the trading day in dollars. Harper and PsychAssist use this value to assess whether you are ahead or behind plan and to surface relevant behavioral prompts.
+  </Step>
+  <Step title="Daily Loss Limit">
+    Set the maximum dollar loss you allow yourself in a single trading day. When you approach this limit, Fintheon surfaces a warning.
+  </Step>
+  <Step title="Contracts Per Trade">
+    Set how many contracts the Autopilot will use per trade, between 1 and 10. The stop loss is automatically sized to a fixed target risk amount per trade regardless of the number of contracts.
+  </Step>
+  <Step title="Over-Trading Monitor">
+    Set the maximum number of trades allowed within a rolling time window. Choose from 1–30 trades and a duration of 5–60 minutes. Fintheon warns you when you are approaching the threshold.
+  </Step>
+</Steps>
+
+### Autopilot
+
+Autopilot is the execution layer that translates trade proposals into broker orders. Three modes are available:
+
+| Mode | Behavior |
+| ---- | -------- |
+| **Off** | Manual trading only — no automatic execution |
+| **Semi-Auto** | Trade proposals appear for your review and require your approval before executing |
+| **Autonomous** | Trades execute automatically without confirmation |
+
+<Warning>
+Autonomous mode executes trades without any manual step. Confirm your risk settings are correct before enabling it.
+</Warning>
+
+**Primary Broker** selects which execution venue Autopilot routes through. Choose **Rithmic** for live futures, **ProjectX** for simulation or funded account trading (TopstepX API), or **MMT** for crypto order flow.
+
+### Price Action Strategies
+
+Enable or disable individual trading models that Autopilot can execute:
+
+- **Morning Flush** — captures early-session flush patterns
+- **Lunch / Power Hour Flush** — targets mid-day and power-hour setups
+- **40/40 Club** — runs the 40/40 price action model
+- **Momentum Model** — trend-following momentum plays
+
+### Volatility and Risk-Event Strategies
+
+- **22 VIX Fix** — activates the volatility strategy triggered at the VIX 22 level
+- **Charged Up Rippers** — trades high-momentum moves following scored risk events
+
+### Mean Reversion
+
+- **Mean Reversion Model** — activates the mean-reversion strategy
+
+---
+
+## API
+
+The API tab connects Fintheon to external data sources that require your own credentials.
+
+### X Feed Authentication
+
+Fintheon polls live headlines from X to power the RiskFlow feed. Because each user provides their own session token, Fintheon avoids shared rate limits and keeps your feed running independently of other users.
+
+<Steps>
+  <Step title="Install the browser extension">
+    Install the **X Auth Helper** extension for Chrome or the **Rettiwt Auth Helper** for Firefox. Allow the extension to run in incognito or private browsing mode.
+  </Step>
+  <Step title="Log in to X in a private window">
+    Open an incognito or private browser window and sign in to X (twitter.com) with the account you want to use for polling.
+  </Step>
+  <Step title="Copy your key">
+    Click the extension icon and press **Get Key**. Copy the API key that appears.
+  </Step>
+  <Step title="Add the key in Fintheon">
+    Paste the key into the API key field in Settings › API and click **Add Key**. The feed begins polling within seconds.
+  </Step>
+  <Step title="Keep the session alive">
+    Close the incognito window without logging out. Logging out invalidates the key.
+  </Step>
+</Steps>
+
+The **Feed Pool** status shows how many of your keys are active, cooling down, or disabled. Adding multiple keys spreads polling load and makes the feed more resilient to rate limits.
+
+### TopstepX Credentials
+
+If you use ProjectX (TopstepX) for funded account trading, enter your **Username** and **API Key** here to allow Autopilot to route orders through the TopstepX API. Contact TopstepX support to request API access for your account.
