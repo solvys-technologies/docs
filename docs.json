@@ -40,6 +40,15 @@
             ]
           },
           {
+            "group": "Desk 2.0",
+            "pages": [
+              "desk-2/overview",
+              "desk-2/suite",
+              "desk-2/collaboration",
+              "desk-2/delivery-status"
+            ]
+          },
+          {
             "group": "AI Features",
             "pages": [
               "ai/harper",

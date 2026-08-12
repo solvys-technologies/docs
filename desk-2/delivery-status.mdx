@@ -1,0 +1,38 @@
+---
+title: "Desk 2.0 delivery status"
+description: "What is already established, what remains to be built, and how Desk 2.0 reaches a trustworthy release."
+sidebarTitle: "Delivery status"
+keywords: ["Fintheon", "Desk 2.0", "trading workspace"]
+---
+
+Desk 2.0 has a documented product model and a safe implementation checkpoint. It is not yet a finished, browser-proven workspace.
+
+## Established
+
+- The existing market cockpit is now **Home** in the product direction.
+- A separate Desk route and shell were introduced to begin the Home-versus-Desk separation.
+- The Desk Suite information architecture is defined.
+- The market-data work has an established ownership boundary: Desk consumes versioned adapters rather than rebuilding the data plane.
+- The collaboration model, privacy rules, history behavior, and shared-artifact model are documented.
+
+## Still required
+
+The product must prove one complete vertical slice before expanding across every Desk page:
+
+1. Find a market target.
+2. Open a governed session.
+3. Create or attach a stage artifact.
+4. Load the correct context module.
+5. Restore history and return to the same state.
+
+After that, the remaining work includes durable room behavior, permissions, agent-context protection, DeskMap and QuantComposer integration, the unified settings page, and activity-triggered islands.
+
+## What does not count as completion
+
+A route, a static channel list, a loaded shell, a green build, or an available health endpoint does not prove that the Desk works for a trader.
+
+Completion requires browser proof that the real workflow can survive navigation, refresh, errors, unavailable providers, private-context boundaries, and return paths.
+
+## The release standard
+
+Desk 2.0 reaches release readiness when the source, the browser experience, durable state, access rules, and deployed product all agree. Until then, these docs describe the target experience and its verified foundations.
