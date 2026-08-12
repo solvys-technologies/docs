@@ -1,0 +1,46 @@
+---
+title: "Collaboration, rooms, and context"
+description: "How channels, rooms, direct messages, agents, and private context work in Desk 2.0."
+sidebarTitle: "Collaboration"
+keywords: ["Fintheon", "Desk 2.0", "trading workspace"]
+---
+
+Desk 2.0 is designed for focused market collaboration. A room gives members a shared timeline, shared artifacts, and shared context, while each person keeps their private work and local view protected.
+
+## Channels and rooms
+
+Channels live inside the Chat page. Choosing a channel replaces the center of Desk with the complete room experience.
+
+A real room supports:
+
+- public and private channels;
+- explicit membership and custom room types;
+- durable messages, threads, search, mentions, unread state, and presence;
+- attachments and artifacts with durable parent links;
+- direct messages between Fintheon users.
+
+Threads begin in the room timeline. Opening a thread, file, artifact, or participant list brings its detail into the outer Strategium drawer. The drawer starts closed and preserves the selected context when it is reopened.
+
+## Shared context has limits
+
+Desk context is permissioned. A parent Desk decides membership and entitlement before a child page or room can expose any context.
+
+A room or page can narrow what a person sees. It cannot enlarge a person’s access.
+
+| Situation | Context behavior |
+| --- | --- |
+| Two users in a direct message | The message works without inheriting Desk context by default. |
+| Eligible Desk collaborators | The room can use the approved shared Desk context and artifacts. |
+| A mentioned agent | It receives only the shared Desk context and expressly shared artifacts for that turn. |
+| Private owner material | It remains sealed from other members, agent turns, events, cached client state, and unrelated Desks. |
+| A member device or provider is unavailable | Only the person who made the mention sees Retry and Delete controls. |
+
+## The context picker
+
+The `@` picker is one access-filtered surface for Desk contexts, pages, rooms, and approved skills. It shows a clear name and location cue, then attaches an approved context manifest to the selected agent turn.
+
+This prevents a collaborator or agent from receiving a broad memory dump when the task only calls for one room, one artifact, or one scoped research area.
+
+## Shared artifacts and local views
+
+DeskMap, chart collaboration, and QuantComposer use shared artifacts with stable parent references. A shared chart or annotation can appear in a room and thread, while each person’s viewport and local selection remain private unless they deliberately share them.
