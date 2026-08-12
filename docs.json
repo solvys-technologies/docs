@@ -65,6 +65,12 @@
     "decoration": "gradient"
   },
   "fonts": {
-    "family": "Geist"
+    "heading": {
+      "family": "Geist",
+      "weight": 600
+    },
+    "body": {
+      "family": "Geist"
+    }
   }
 }
