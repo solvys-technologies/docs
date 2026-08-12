@@ -63,5 +63,8 @@
   },
   "background": {
     "decoration": "gradient"
+  },
+  "fonts": {
+    "family": "Geist"
   }
 }
