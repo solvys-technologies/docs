@@ -2,11 +2,14 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "luma",
   "name": "Fintheon",
-  "favicon": "https://media.brand.dev/913e0bb7-dc4e-47c3-b04f-1387c352757c.svg",
+  "favicon": {
+    "light": "/images/Fintheon-logo-gray-tight.png",
+    "dark": "/images/Fintheon-logo-black-tight.png"
+  },
   "colors": {
-    "primary": "#747474",
-    "light": "#d6d6d6",
-    "dark": "#050505"
+    "primary": "#000000",
+    "light": "#444444",
+    "dark": "#352d21"
   },
   "appearance": {
     "default": "dark"
@@ -24,20 +27,11 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "installation",
-              "quickstart"
-            ]
+            "pages": []
           },
           {
             "group": "Workspace",
-            "pages": [
-              "workspace/consilium",
-              "workspace/sanctum",
-              "workspace/strategium",
-              "workspace/apparatus"
-            ]
+            "pages": []
           },
           {
             "group": "Desk 2.0",
@@ -50,31 +44,24 @@
           },
           {
             "group": "AI Features",
-            "pages": [
-              "ai/harper",
-              "ai/arbitrum",
-              "ai/riskflow",
-              "ai/briefs"
-            ]
+            "pages": []
           },
           {
             "group": "Trading Tools",
-            "pages": [
-              "trading/journal",
-              "trading/psych-assist",
-              "trading/voice"
-            ]
+            "pages": []
           },
           {
             "group": "Configuration",
-            "pages": [
-              "configuration/settings",
-              "configuration/cli",
-              "configuration/troubleshooting"
-            ]
+            "pages": []
           }
         ]
       }
     ]
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "background": {
+    "decoration": "gradient"
   }
 }
