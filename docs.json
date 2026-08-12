@@ -35,7 +35,9 @@
             "group": "Workspace",
             "pages": [
               "riskflow",
-              "performance"
+              "performance",
+              "market-intelligence",
+              "research-and-records"
             ]
           },
           {
@@ -51,7 +53,9 @@
             "group": "AI Features",
             "pages": [
               "narrativeflow",
-              "cao-and-agents"
+              "cao-and-agents",
+              "decision-workspaces",
+              "team-and-collaboration"
             ]
           },
           {
@@ -64,7 +68,8 @@
           {
             "group": "Configuration",
             "pages": [
-              "accounts-and-settings"
+              "accounts-and-settings",
+              "platform-and-support"
             ]
           }
         ]
