@@ -27,11 +27,16 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": []
+            "pages": [
+              "overview"
+            ]
           },
           {
             "group": "Workspace",
-            "pages": []
+            "pages": [
+              "riskflow",
+              "performance"
+            ]
           },
           {
             "group": "Desk 2.0",
@@ -44,15 +49,23 @@
           },
           {
             "group": "AI Features",
-            "pages": []
+            "pages": [
+              "narrativeflow",
+              "cao-and-agents"
+            ]
           },
           {
             "group": "Trading Tools",
-            "pages": []
+            "pages": [
+              "trading-and-decisions",
+              "psychassist"
+            ]
           },
           {
             "group": "Configuration",
-            "pages": []
+            "pages": [
+              "accounts-and-settings"
+            ]
           }
         ]
       }
