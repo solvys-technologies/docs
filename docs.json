@@ -72,5 +72,13 @@
     "body": {
       "family": "Geist"
     }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/fintheonai"
+    }
+  },
+  "thumbnails": {
+    "appearance": "dark"
   }
 }
