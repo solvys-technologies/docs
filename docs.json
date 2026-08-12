@@ -79,6 +79,7 @@
     }
   },
   "thumbnails": {
-    "appearance": "dark"
+    "appearance": "dark",
+    "background": "/images/Fintheon-logo-black.png"
   }
 }
